@@ -1,12 +1,13 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "industry",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This mod aims to help new BTA modders.",
+  "name": "Better than Industry",
+  "description": "This mod aims to add useful tech to BTA.",
   "authors": [
-    "Turnip Labs"
+    "Turnip Labs",
+    "Baboonbuddy/Jimmy Cakes"
   ],
   "contact": {
     "homepage": "",
@@ -18,15 +19,16 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-        "turniplabs.examplemod.ExampleMod"
+      "turniplabs.industry.ModIndustry2"
     ]
   },
   "mixins": [
-      "examplemod.mixins.json"
+    "industry.mixins.json"
   ],
 
   "depends": {
-    "fabricloader": ">=0.13.3"
+    "fabricloader": ">=0.13.3",
+    "halplibe": ">=1.1.4"
   },
   "suggests": {
   }

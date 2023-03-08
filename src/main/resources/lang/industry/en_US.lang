@@ -1,0 +1,29 @@
+tile.industry.ore.copper.stone.name=Stone Copper Ore
+tile.industry.ore.copper.stone.desc=Copper nuggets embedded in stone.
+tile.industry.ore.copper.basalt.name=Basalt Copper Ore
+tile.industry.ore.copper.basalt.desc=Copper nuggets embedded in basalt.
+tile.industry.ore.copper.limestone.name=Limestone Copper Ore
+tile.industry.ore.copper.limestone.desc=Copper nuggets embedded in limestone.
+tile.industry.ore.copper.granite.name=Granite Copper Ore
+tile.industry.ore.copper.granite.desc=Copper nuggets embedded in granite.
+
+tile.industry.ore.tin.stone.name=Stone Tin Ore
+tile.industry.ore.tin.stone.desc=Tin nuggets embedded in stone.
+tile.industry.ore.tin.basalt.name=Basalt Tin Ore
+tile.industry.ore.tin.basalt.desc=Tin nuggets embedded in basalt.
+tile.industry.ore.tin.limestone.name=Limestone Tin Ore
+tile.industry.ore.tin.limestone.desc=Tin nuggets embedded in limestone.
+tile.industry.ore.tin.granite.name=Granite Tin Ore
+tile.industry.ore.tin.granite.desc=Tin nuggets embedded in granite.
+
+item.industry.raw.copper.name=Raw Copper Ore
+item.industry.raw.copper.desc=A chunk of unprocessed copper. Can be smelted into a copper ingot.
+item.industry.raw.tin.name=Raw Tin Ore
+item.industry.raw.tin.desc=A chunk of unprocessed tin. Can be smelted into a tin ingot.
+
+item.industry.ingot.copper.name=Copper Ingot
+item.industry.ingot.copper.desc=
+item.industry.ingot.tin.name=Tin Ingot
+item.industry.ingot.tin.desc=
+item.industry.ingot.bronze.name=Bronze Ingot
+item.industry.ingot.bronze.desc=
