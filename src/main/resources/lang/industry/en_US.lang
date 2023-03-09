@@ -16,14 +16,21 @@ tile.industry.ore.tin.limestone.desc=Tin nuggets embedded in limestone.
 tile.industry.ore.tin.granite.name=Granite Tin Ore
 tile.industry.ore.tin.granite.desc=Tin nuggets embedded in granite.
 
+tile.industry.block.copper.name=Block of Copper
+tile.industry.block.copper.desc=A solid block of copper. Shocking!
+tile.industry.block.tin.name=Block of Tin
+tile.industry.block.tin.desc=A solid block of tin.
+tile.industry.block.bronze.name=Block of Bronze
+tile.industry.block.bronze.desc=A solid block of bronze.
+
 item.industry.raw.copper.name=Raw Copper Ore
 item.industry.raw.copper.desc=A chunk of unprocessed copper. Can be smelted into a copper ingot.
 item.industry.raw.tin.name=Raw Tin Ore
 item.industry.raw.tin.desc=A chunk of unprocessed tin. Can be smelted into a tin ingot.
 
 item.industry.ingot.copper.name=Copper Ingot
-item.industry.ingot.copper.desc=
+item.industry.ingot.copper.desc=A metal bar of copper used in electricity.
 item.industry.ingot.tin.name=Tin Ingot
-item.industry.ingot.tin.desc=
+item.industry.ingot.tin.desc=A metal bar of tin used for casings.
 item.industry.ingot.bronze.name=Bronze Ingot
-item.industry.ingot.bronze.desc=
+item.industry.ingot.bronze.desc=Tin and copper fused into a useful alloy.
