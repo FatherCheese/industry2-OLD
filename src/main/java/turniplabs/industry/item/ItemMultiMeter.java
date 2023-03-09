@@ -1,7 +1,12 @@
 package turniplabs.industry.item;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.src.*;
+import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.Item;
+import net.minecraft.src.ItemStack;
+import net.minecraft.src.StringTranslate;
+import net.minecraft.src.TileEntity;
+import net.minecraft.src.World;
 import sunsetsatellite.energyapi.api.IEnergy;
 
 public class ItemMultiMeter extends Item {
