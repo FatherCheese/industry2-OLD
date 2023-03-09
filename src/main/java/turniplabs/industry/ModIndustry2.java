@@ -10,6 +10,8 @@ import turniplabs.halplibe.helper.BlockHelper;
 import turniplabs.halplibe.helper.ItemHelper;
 import turniplabs.industry.block.BlockOreCopper;
 import turniplabs.industry.block.BlockOreTin;
+import turniplabs.industry.block.BlockSolarGenerator;
+import turniplabs.industry.item.ItemMultiMeter;
 
 
 public class ModIndustry2 implements ModInitializer {
@@ -48,6 +50,12 @@ public class ModIndustry2 implements ModInitializer {
     // Misc //
     public static final Item DUST_BRONZE = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "dust.bronze", "dust_bronze.png");
     public static final Item INGOT_BRONZE = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "ingot.bronze", "ingot_bronze.png");
+
+    // tools //
+    public static final Item TOOL_MULTIMETER = ItemHelper.createItem(MOD_ID, new ItemMultiMeter(nextItem()), "tool.multimeter", "tool_multimeter.png");
+
+    // Machines //
+    public static final Block MACHINE_GENERATOR_SOLAR = BlockHelper.createBlock(MOD_ID, new BlockSolarGenerator(nextBlock(), Material.iron), "machine.generator.solar", "machine_generator_solar_top.png", "machine_casing_basic.png", "machine_casing_basic.png", Block.soundMetalFootstep, 3.0f, 3.0f, 0.0f);
 
     @Override
     public void onInitialize() {

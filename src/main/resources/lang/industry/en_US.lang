@@ -27,3 +27,8 @@ item.industry.ingot.tin.name=Tin Ingot
 item.industry.ingot.tin.desc=
 item.industry.ingot.bronze.name=Bronze Ingot
 item.industry.ingot.bronze.desc=
+
+item.tool.multimeter.name=Multi-Meter
+item.tool.multimeter.desc=Displays a reading of how much energy is within a conductor.
+
+message.multimeter=This conductor contains [] RV
