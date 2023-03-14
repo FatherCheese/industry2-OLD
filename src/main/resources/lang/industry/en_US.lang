@@ -28,9 +28,23 @@ item.industry.raw.copper.desc=A chunk of unprocessed copper. Can be smelted into
 item.industry.raw.tin.name=Raw Tin Ore
 item.industry.raw.tin.desc=A chunk of unprocessed tin. Can be smelted into a tin ingot.
 
+item.industry.dust.copper.name=Copper Dust
+item.industry.dust.copper.desc=A pile of copper dust.
+item.industry.dust.tin.name=Tin Dust
+item.industry.dust.tin.desc=A pile of tin dust.
+item.industry.dust.bronze.name=Bronze Dust
+item.industry.dust.bronze.desc=A pile of bronze alloy dust.
+item.industry.dust.iron.name=Iron Dust
+item.industry.dust.iron.desc=A pile of iron dust.
+item.industry.dust.gold.name=Gold Dust
+item.industry.dust.gold.desc=A pile of gold dust.
+
 item.industry.ingot.copper.name=Copper Ingot
 item.industry.ingot.copper.desc=A metal bar of copper used in electricity.
 item.industry.ingot.tin.name=Tin Ingot
 item.industry.ingot.tin.desc=A metal bar of tin used for casings.
 item.industry.ingot.bronze.name=Bronze Ingot
 item.industry.ingot.bronze.desc=Tin and copper fused into a useful alloy.
+
+item.industry.battery.redstone.name=Redstone Battery
+item.industry.battery.redstone.desc=A simple tin battery used to store redstone current.

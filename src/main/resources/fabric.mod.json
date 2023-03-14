@@ -3,15 +3,17 @@
   "id": "industry",
   "version": "${version}",
 
-  "name": "Better than Industry",
-  "description": "This mod aims to add useful tech to BTA.",
+  "name": "Better than Industry2",
+  "description": "This mod aims to add useful tech and machines to BTA.",
   "authors": [
     "Turnip Labs",
-    "Baboonbuddy/Jimmy Cakes"
+    "Baboonbuddy/Jimmy Cakes",
+    "Kheprep"
   ],
   "contact": {
     "homepage": "",
-    "sources": ""
+    "sources": "",
+    "issues": "https://github.com/Turnip-Labs/industry2/issues"
   },
 
   "license": "CC0-1.0",
