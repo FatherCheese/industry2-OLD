@@ -66,7 +66,7 @@ dependencies {
 	modImplementation "org.apache.logging.log4j:log4j-slf4j18-impl:2.16.0"
 
 	// EnergyAPI
-	modImplementation("com.github.MartinSVK12:energyapi:main-SNAPSHOT") {
+	modImplementation("com.github.MartinSVK12:energyapi:${project.energyapi_version}") {
 		exclude(group: 'objects', module: 'client')
 	}
 }
