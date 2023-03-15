@@ -6,10 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.helper.*;
 import turniplabs.industry.block.*;
+import turniplabs.industry.item.*;
+import turniplabs.industry.entity.TileEntitySolarGenerator;
 import turniplabs.industry.block.tileentity.TileEntityCable;
-import turniplabs.industry.item.ItemBatteryRedstone;
-import turniplabs.industry.item.ItemTreeTap;
-
 
 public class ModIndustry2 implements ModInitializer {
     public static final String MOD_ID = "industry";
@@ -55,6 +54,9 @@ public class ModIndustry2 implements ModInitializer {
     public static final Item DUST_BRONZE = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "dust.bronze", "dust_bronze.png");
     public static final Item INGOT_BRONZE = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "ingot.bronze", "ingot_bronze.png");
 
+    // Machines //
+    public static final Block MACHINE_GENERATOR_SOLAR = BlockHelper.createBlock(MOD_ID, new BlockSolarGenerator(nextBlock(), Material.iron), "machine.generator.solar", "machine_generator_solar_top.png", "machine_casing_basic.png", "machine_casing_basic.png", Block.soundMetalFootstep, 3.0f, 3.0f, 0.0f);
+
     // Vanilla Metals //
     public static final Item DUST_IRON = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "dust.iron", "dust_iron.png");
     public static final Item DUST_GOLD = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "dust.gold", "dust_gold.png");
@@ -71,6 +73,8 @@ public class ModIndustry2 implements ModInitializer {
     // Tools //
     public static final Item TREE_TAP = ItemHelper.createItem(MOD_ID, new ItemTreeTap(nextItem()), "tool.tap", "tree_tap.png");
     public static final Item BATTERY_REDSTONE = ItemHelper.createItem(MOD_ID, new ItemBatteryRedstone(nextItem()), "battery.redstone").setMaxStackSize(1);
+    
+    public static final Item TOOL_MULTIMETER = ItemHelper.createItem(MOD_ID, new ItemMultiMeter(nextItem()), "tool.multimeter", "tool_multimeter.png");
 
     public static final Item CIRCUIT_BASIC = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "circuit.basic", "circuit_basic.png");
     public static final Item CIRCUIT_ADVANCED = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "circuit.advanced", "circuit_advanced.png");
@@ -80,6 +84,7 @@ public class ModIndustry2 implements ModInitializer {
         LOGGER.info("Better than Industry2 has been initialized. Have fun!");
 
         EntityHelper.createTileEntity(TileEntityCable.class, "Cable");
+        EntityHelper.createTileEntity(TileEntitySolarGenerator.class, "MACHINE_GENERATOR_SOLAR");
 
         int[] copperCable = TextureHelper.registerBlockTexture(MOD_ID, "item_cable_copper.png");
 

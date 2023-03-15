@@ -54,6 +54,7 @@ item.industry.ingot.copper.desc=A metal bar of copper used in electricity.
 item.industry.ingot.tin.name=Tin Ingot
 item.industry.ingot.tin.desc=A metal bar of tin used for casings.
 item.industry.ingot.bronze.name=Bronze Ingot
+
 item.industry.ingot.bronze.desc=Tin and copper fused into a useful alloy.
 item.industry.ingot.rubber.name=Rubber Ingot
 item.industry.ingot.rubber.desc=A rubber bar used for insulation.
@@ -71,3 +72,9 @@ item.industry.circuit.basic.name=Basic Circuit
 item.industry.circuit.basic.desc=A basic electronic circuit.
 item.industry.circuit.advanced.name=Advanced Circuit
 item.industry.circuit.advanced.desc=An advanced electronic circuit.
+
+item.industry.tool.multimeter.name=Multi-Meter
+item.industry.tool.multimeter.desc=Displays a reading of how much energy is within a conductor. you can compare your current reading to the last one by pressing shift.
+
+message.industry.multimeter=> This conductor contains [] RV.
+message.industry.multimeter.saved=>> Last saved reading was [0] RV, this is a [1] RV difference from the current reading of [2] RV.
