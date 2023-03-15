@@ -6,10 +6,10 @@ import sunsetsatellite.energyapi.template.items.ItemBattery;
 import turniplabs.halplibe.helper.TextureHelper;
 import turniplabs.industry.ModIndustry2;
 
-public class ItemIndBattery extends ItemBattery {
+public class ItemBatteryBase extends ItemBattery {
     public int[][] textureCoordinates = new int[5][];
 
-    public ItemIndBattery(int id, int capacity, int provide, int receive, String fullTexture, String midFullTexture, String halfTexture,  String midHalfTexture, String emptyTexture) {
+    public ItemBatteryBase(int id, int capacity, int provide, int receive, String fullTexture, String midFullTexture, String halfTexture, String midHalfTexture, String emptyTexture) {
         super(id);
         baseCapacity = capacity;
         baseProvide = provide;

@@ -23,6 +23,16 @@ tile.industry.block.tin.desc=A solid block of tin.
 tile.industry.block.bronze.name=Block of Bronze
 tile.industry.block.bronze.desc=A solid block of bronze.
 
+tile.industry.leaves.rubber.name=Rubber-Wood Leaves
+tile.industry.leaves.rubber.desc=Leaves from a rubber-wood tree.
+tile.industry.log.rubber.name=Rubber-Wood Log
+tile.industry.log.rubber.desc=A log from a rubber-wood tree.
+tile.industry.sapling.rubber.name=Rubber-Wood Sapling
+tile.industry.sapling.rubber.desc=Plant to grow a rubber-wood tree.
+
+tile.industry.cable.copper.name=Copper Cable
+tile.industry.cable.copper.desc=a cubic meter long cable, used for transporting electric current.
+
 item.industry.raw.copper.name=Raw Copper Ore
 item.industry.raw.copper.desc=A chunk of unprocessed copper. Can be smelted into a copper ingot.
 item.industry.raw.tin.name=Raw Tin Ore
@@ -45,6 +55,19 @@ item.industry.ingot.tin.name=Tin Ingot
 item.industry.ingot.tin.desc=A metal bar of tin used for casings.
 item.industry.ingot.bronze.name=Bronze Ingot
 item.industry.ingot.bronze.desc=Tin and copper fused into a useful alloy.
+item.industry.ingot.rubber.name=Rubber Ingot
+item.industry.ingot.rubber.desc=A rubber bar used for insulation.
+
+item.industry.resin.name=Tree Resin
+item.industry.resin.desc=Sticky but not quite as gross. Still sticks to your hands, however.
+
+item.industry.tool.tap.name=Tree Tap
+item.industry.tool.tap.desc=A wooden spigot used to extract precious tree resin.
 
 item.industry.battery.redstone.name=Redstone Battery
 item.industry.battery.redstone.desc=A simple tin battery used to store redstone current.
+
+item.industry.circuit.basic.name=Basic Circuit
+item.industry.circuit.basic.desc=A basic electronic circuit.
+item.industry.circuit.advanced.name=Advanced Circuit
+item.industry.circuit.advanced.desc=An advanced electronic circuit.
