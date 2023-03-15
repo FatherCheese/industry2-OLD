@@ -20,8 +20,26 @@ public class ItemMultiMeter extends Item {
         TileEntity conductor = world.getBlockTileEntity(i, j, k);
 
         if (conductor instanceof IEnergy) {
+            int reading = ((IEnergy) conductor).getEnergy();
             StringTranslate translator = StringTranslate.getInstance();
-            Minecraft.getMinecraft().commandHandler.sendMessageToPlayer(entityplayer, translator.translateKey("message.multimeter").replace("[]", String.valueOf(((IEnergy) conductor).getEnergy())));
+
+            if (entityplayer.isSneaking()) {
+                int savedReading = itemstack.tag.getInteger("savedReading");
+
+                // sends the message to the player. split this one into multiple lines to improve readability.
+                Minecraft.getMinecraft().commandHandler.sendMessageToPlayer(
+                    entityplayer, translator.translateKey("message.industry.multimeter.saved")
+                    .replace("[0]", String.valueOf(savedReading))
+                    .replace("[1]", String.valueOf(Math.abs(savedReading - reading)))
+                    .replace("[2]", String.valueOf(reading))
+                );
+
+                itemstack.tag.setInteger("savedReading", reading);
+                return true;
+            }
+
+            Minecraft.getMinecraft().commandHandler.sendMessageToPlayer(entityplayer, translator.translateKey("message.industry.multimeter").replace("[]", String.valueOf(reading)));
+            itemstack.tag.setInteger("savedReading", reading);
             return true;
         }
 

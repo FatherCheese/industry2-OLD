@@ -7,10 +7,12 @@ import net.minecraft.src.Material;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.helper.BlockHelper;
+import turniplabs.halplibe.helper.EntityHelper;
 import turniplabs.halplibe.helper.ItemHelper;
 import turniplabs.industry.block.BlockOreCopper;
 import turniplabs.industry.block.BlockOreTin;
 import turniplabs.industry.block.BlockSolarGenerator;
+import turniplabs.industry.entity.TileEntitySolarGenerator;
 import turniplabs.industry.item.ItemMultiMeter;
 
 
@@ -59,6 +61,8 @@ public class ModIndustry2 implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        LOGGER.info("ExampleMod initialized.");
+        LOGGER.info(MOD_ID + " initialized.");
+        
+        EntityHelper.createTileEntity(TileEntitySolarGenerator.class, "MACHINE_GENERATOR_SOLAR");
     }
 }

@@ -28,7 +28,8 @@ item.industry.ingot.tin.desc=
 item.industry.ingot.bronze.name=Bronze Ingot
 item.industry.ingot.bronze.desc=
 
-item.tool.multimeter.name=Multi-Meter
-item.tool.multimeter.desc=Displays a reading of how much energy is within a conductor.
+item.industry.tool.multimeter.name=Multi-Meter
+item.industry.tool.multimeter.desc=Displays a reading of how much energy is within a conductor. you can compare your current reading to the last one by pressing shift.
 
-message.multimeter=This conductor contains [] RV
+message.industry.multimeter=> This conductor contains [] RV.
+message.industry.multimeter.saved=>> Last saved reading was [0] RV, this is a [1] RV difference from the current reading of [2] RV.
