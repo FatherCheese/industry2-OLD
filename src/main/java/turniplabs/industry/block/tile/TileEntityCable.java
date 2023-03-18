@@ -1,4 +1,4 @@
-package turniplabs.industry.block.tileentity;
+package turniplabs.industry.block.tile;
 
 import sunsetsatellite.energyapi.impl.TileEntityEnergyConductor;
 import sunsetsatellite.energyapi.util.Connection;

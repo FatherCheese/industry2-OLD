@@ -4,7 +4,7 @@ import net.minecraft.src.*;
 import net.minecraft.src.command.ChatColor;
 import sunsetsatellite.energyapi.util.Config;
 import sunsetsatellite.energyapi.util.ICustomDescription;
-import turniplabs.industry.block.tileentity.TileEntityCable;
+import turniplabs.industry.block.tile.TileEntityCable;
 
 public class BlockCable extends BlockContainer implements ICustomDescription {
     int capacity;

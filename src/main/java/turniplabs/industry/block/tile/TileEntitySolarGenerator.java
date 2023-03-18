@@ -1,4 +1,4 @@
-package turniplabs.industry.entity;
+package turniplabs.industry.block.tile;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.Season;
@@ -10,8 +10,8 @@ public class TileEntitySolarGenerator extends TileEntityBatteryBox {
 
     public TileEntitySolarGenerator(){
         super();
-        setCapacity(250);
-        setTransfer(25);
+        setCapacity(256);
+        setTransfer(8);
 
         for (Direction dir : Direction.values()) setConnection(dir, Connection.OUTPUT);
     }
