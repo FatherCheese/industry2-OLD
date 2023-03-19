@@ -7,6 +7,7 @@ import sunsetsatellite.energyapi.template.containers.ContainerEnergy;
 import turniplabs.industry.block.tile.TileEntitySolarGenerator;
 
 public class ContainerSolarGenerator extends ContainerEnergy {
+
     public ContainerSolarGenerator(IInventory iInventory, TileEntitySolarGenerator solarGenerator) {
         tile = solarGenerator;
         addSlot(new Slot(solarGenerator, 0, 80, 35));
