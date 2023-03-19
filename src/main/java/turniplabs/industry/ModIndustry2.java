@@ -5,8 +5,13 @@ import net.minecraft.src.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sunsetsatellite.energyapi.EnergyAPI;
+import sunsetsatellite.energyapi.template.blocks.BlockGenerator;
 import turniplabs.halplibe.helper.*;
 import turniplabs.industry.block.*;
+import turniplabs.industry.block.machines.BlockGeneratorInd;
+import turniplabs.industry.block.machines.BlockSolarGenerator;
+import turniplabs.industry.block.tile.TileEntityGeneratorInd;
+import turniplabs.industry.gui.GuiGeneratorInd;
 import turniplabs.industry.gui.GuiSolarGenerator;
 import turniplabs.industry.item.*;
 import turniplabs.industry.block.tile.TileEntitySolarGenerator;
@@ -73,10 +78,15 @@ public class ModIndustry2 implements ModInitializer {
     // Tools //
     public static final Item TOOL_TAP = ItemHelper.createItem(MOD_ID, new ItemTreeTap(nextItem()), "tool.tap", "tree_tap.png");
     public static final Item TOOL_MULTIMETER = ItemHelper.createItem(MOD_ID, new ItemMultiMeter(nextItem()), "tool.multimeter", "tool_multimeter.png");
+    public static final Item TOOL_WRENCH = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "tool.wrench", "tool_wrench.png");
 
     public static final Item BATTERY_REDSTONE = ItemHelper.createItem(MOD_ID, new ItemBatteryRedstone(nextItem()), "battery.redstone").setMaxStackSize(1);
 
     // Machines //
+    public static final Block MACHINE_CASING_BASIC = BlockHelper.createBlock(MOD_ID, new Block(nextBlock(), Material.iron), "machine.casing.basic", "machine_casing_basic.png", Block.soundMetalFootstep, 3.0f, 3.0f, 0.0f);
+    public static final Block MACHINE_CASING_ADVANCED = BlockHelper.createBlock(MOD_ID, new Block(nextBlock(), Material.iron), "machine.casing.advanced", "machine_casing_advanced.png", Block.soundMetalFootstep, 3.0f, 3.0f, 0.0f);
+
+    public static final Block MACHINE_GENERATOR = BlockHelper.createBlock(MOD_ID, new BlockGeneratorInd(nextBlock(), Material.iron), "machine.generator", "machine_casing_basic.png", "machine_casing_basic.png", "machine_generator.png", "machine_casing_basic.png", "machine_casing_basic.png", "machine_casing_basic.png", Block.soundMetalFootstep, 3.0f, 3.0f, 0.0f);
     public static final Block MACHINE_GENERATOR_SOLAR = BlockHelper.createBlock(MOD_ID, new BlockSolarGenerator(nextBlock(), Material.iron), "machine.generator.solar", "machine_generator_solar_top.png", "machine_casing_basic.png", "machine_casing_basic.png", Block.soundMetalFootstep, 3.0f, 3.0f, 0.0f);
 
     public static final Item CIRCUIT_BASIC = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "circuit.basic", "circuit_basic.png");
@@ -88,6 +98,7 @@ public class ModIndustry2 implements ModInitializer {
 
         EntityHelper.createTileEntity(TileEntityCable.class, "Cable");
         EntityHelper.createTileEntity(TileEntitySolarGenerator.class, "MACHINE_GENERATOR_SOLAR");
+        EntityHelper.createTileEntity(TileEntityGeneratorInd.class, "GENERATOR");
 
         int[] copperCable = TextureHelper.registerBlockTexture(MOD_ID, "item_cable_copper.png");
         int[] tinCable = TextureHelper.registerBlockTexture(MOD_ID, "item_cable_tin.png");
@@ -97,5 +108,6 @@ public class ModIndustry2 implements ModInitializer {
 
 
         EnergyAPI.addToNameGuiMap("Solar Generator", GuiSolarGenerator.class, TileEntitySolarGenerator.class);
+        EnergyAPI.addToNameGuiMap("Generator", GuiGeneratorInd.class, TileEntityGeneratorInd.class);
     }
 }

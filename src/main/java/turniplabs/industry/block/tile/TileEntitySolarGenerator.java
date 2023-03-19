@@ -7,6 +7,7 @@ import sunsetsatellite.energyapi.util.Connection;
 import sunsetsatellite.energyapi.util.Direction;
 
 public class TileEntitySolarGenerator extends TileEntityBatteryBox {
+    public int generatedEnergy;
 
     public TileEntitySolarGenerator(){
         super();
@@ -19,7 +20,7 @@ public class TileEntitySolarGenerator extends TileEntityBatteryBox {
     @Override
     public void updateEntity() {
         if (energy < capacity && isFacingSky()) {
-            int generatedEnergy = 4;
+            generatedEnergy = 4;
 
             if (worldObj.getBlockTemperature(xCoord, zCoord) > 0.85F && worldObj.getBlockHumidity(xCoord, zCoord) < 0.30F) generatedEnergy += 2;
             if (worldObj.getBlockTemperature(xCoord, zCoord) < 0.40F && worldObj.getBlockHumidity(xCoord, zCoord) < 0.30F) generatedEnergy -= 2;
@@ -34,7 +35,7 @@ public class TileEntitySolarGenerator extends TileEntityBatteryBox {
         super.updateEntity();
     }
 
-    protected boolean isFacingSky() {
+    private boolean isFacingSky() {
         for(int newYCoord = yCoord + 1; newYCoord < 255; newYCoord++) {
             Block block = Block.getBlock(worldObj.getBlockId(xCoord, newYCoord, zCoord));
             if (block != null && block.isOpaqueCube()) return false;

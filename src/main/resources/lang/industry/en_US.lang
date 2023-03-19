@@ -36,6 +36,14 @@ tile.industry.cable.copper.desc=a cubic meter long cable, used for transporting 
 tile.industry.cable.tin.name=Tin Cable
 tile.industry.cable.tin.desc=a cubic meter long cable, used for transporting electric current.
 
+tile.industry.machine.casing.basic.name=Basic Machine Casing
+tile.industry.machine.casing.basic.desc=An iron casing used to cover sensitive electronics.
+tile.industry.machine.casing.advanced.name=Advanced Machine Casing
+tile.industry.machine.casing.advanced.desc=A steel casing used to cover advanced and sensitive electronics.
+
+tile.industry.machine.generator.name=Generator
+tile.industry.machine.generator.desc=Powers your machinery using fossil fuels.
+
 tile.industry.machine.generator.solar.name=Solar Generator
 tile.industry.machine.generator.solar.desc=
 
@@ -70,6 +78,8 @@ item.industry.resin.desc=Sticky but not quite as gross. Still sticks to your han
 
 item.industry.tool.tap.name=Tree Tap
 item.industry.tool.tap.desc=A wooden spigot used to extract precious tree resin.
+item.industry.tool.wrench.name=Bronze Wrench
+item.industry.tool.wrench.desc=Safely picks up machines.
 item.industry.tool.multimeter.name=Multi-Meter
 item.industry.tool.multimeter.desc=Displays a reading of how much energy is within a conductor. Press shift to create a health-assessment on compatible machines.
 
