@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import sunsetsatellite.energyapi.util.RenderWire;
 import turniplabs.industry.ModIndustry2;
+import turniplabs.industry.block.BlockCable;
 
 @Mixin (value = RenderBlocks.class, remap = false)
 public class RenderBlocksMixin {
@@ -19,6 +20,6 @@ public class RenderBlocksMixin {
 
     @Inject(method = "renderBlockByRenderType", at = @At("TAIL"), cancellable = true)
     private void industry_renderCables(Block block, int i, int j, int k, CallbackInfoReturnable<Boolean> cir) {
-        if (block.blockID == ModIndustry2.COPPER_CABLE.blockID) cir.setReturnValue(RenderWire.render((RenderBlocks) ((Object)this),this.blockAccess,i,j,k,block,0));
+        if (block instanceof BlockCable) cir.setReturnValue(RenderWire.render((RenderBlocks) ((Object)this),this.blockAccess,i,j,k,block,0));
     }
 }

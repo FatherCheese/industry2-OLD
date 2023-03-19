@@ -33,7 +33,8 @@ public class ModIndustry2 implements ModInitializer {
     public static final Block ORE_COPPER_LIMESTONE = BlockHelper.createBlock(MOD_ID, new BlockOreCopper(nextBlock(), Material.rock), "ore.copper.limestone", "ore_copper_limestone.png", Block.soundStoneFootstep, 3.0f, 3.0f, 0.0f);
     public static final Block ORE_COPPER_GRANITE = BlockHelper.createBlock(MOD_ID, new BlockOreCopper(nextBlock(), Material.rock), "ore.copper.granite", "ore_copper_granite.png", Block.soundStoneFootstep, 3.0f, 3.0f, 0.0f);
     public static final Block BLOCK_OF_COPPER = BlockHelper.createBlock(MOD_ID, new Block(nextBlock(), Material.iron), "block.copper", "block_copper_top.png", "block_copper_bottom.png", "block_copper_sides.png", Block.soundMetalFootstep, 5.0f, 6.0f, 0.0f);
-    public static final Block COPPER_CABLE = BlockHelper.createBlock(MOD_ID, new BlockCable(nextBlock(), Material.iron, 32, 0, 32), "cable", "cable_copper.png", Block.soundClothFootstep, 0.0f, 0.0f, 0.0f);
+    public static final Block COPPER_CABLE = BlockHelper.createBlock(MOD_ID, new BlockCable(nextBlock(), Material.iron, 32, 0, 32, 1), "cable.copper", "cable_copper.png", Block.soundClothFootstep, 0.0f, 0.0f, 0.0f);
+    public static final Block TIN_CABLE = BlockHelper.createBlock(MOD_ID, new BlockCable(nextBlock(), Material.iron, 8, 0, 8, 0), "cable.tin", "block_tin_sides.png", Block.soundClothFootstep, 0.0f, 0.0f, 0.0f);
 
     public static final Item RAW_COPPER = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "raw.copper", "raw_copper.png");
     public static final Item DUST_COPPER = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "dust.copper", "dust_copper.png");
@@ -89,8 +90,11 @@ public class ModIndustry2 implements ModInitializer {
         EntityHelper.createTileEntity(TileEntitySolarGenerator.class, "MACHINE_GENERATOR_SOLAR");
 
         int[] copperCable = TextureHelper.registerBlockTexture(MOD_ID, "item_cable_copper.png");
+        int[] tinCable = TextureHelper.registerBlockTexture(MOD_ID, "item_cable_tin.png");
 
         Item.itemsList[COPPER_CABLE.blockID].setIconCoord(copperCable[0], copperCable[1]);
+        Item.itemsList[TIN_CABLE.blockID].setIconCoord(tinCable[0], tinCable[1]);
+
 
         EnergyAPI.addToNameGuiMap("Solar Generator", GuiSolarGenerator.class, TileEntitySolarGenerator.class);
     }

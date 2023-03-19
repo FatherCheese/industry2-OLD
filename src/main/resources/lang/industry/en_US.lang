@@ -33,6 +33,9 @@ tile.industry.sapling.rubber.desc=Plant to grow a rubber-wood tree.
 tile.industry.cable.copper.name=Copper Cable
 tile.industry.cable.copper.desc=a cubic meter long cable, used for transporting electric current.
 
+tile.industry.cable.tin.name=Tin Cable
+tile.industry.cable.tin.desc=a cubic meter long cable, used for transporting electric current.
+
 tile.industry.machine.generator.solar.name=Solar Generator
 tile.industry.machine.generator.solar.desc=
 
@@ -68,7 +71,7 @@ item.industry.resin.desc=Sticky but not quite as gross. Still sticks to your han
 item.industry.tool.tap.name=Tree Tap
 item.industry.tool.tap.desc=A wooden spigot used to extract precious tree resin.
 item.industry.tool.multimeter.name=Multi-Meter
-item.industry.tool.multimeter.desc=Displays a reading of how much energy is within a conductor. you can compare your current reading to the last one by pressing shift.
+item.industry.tool.multimeter.desc=Displays a reading of how much energy is within a conductor. Press shift to create a health-assessment on compatible machines.
 
 item.industry.battery.redstone.name=Redstone Battery
 item.industry.battery.redstone.desc=A simple tin battery used to store redstone current.
@@ -78,5 +81,6 @@ item.industry.circuit.basic.desc=A basic electronic circuit.
 item.industry.circuit.advanced.name=Advanced Circuit
 item.industry.circuit.advanced.desc=An advanced electronic circuit.
 
-message.industry.multimeter=> This conductor contains [] RV.
-message.industry.multimeter.saved=>> Last saved reading was [0] RV, this is a [1] RV difference from the current reading of [2] RV.
+message.industry.multimeter.energy=> This conductor contains [] RC.
+message.industry.multimeter.health=> This conductor has [] health points.
+message.industry.multimeter.saved=Last reading: [0] RC; Last health-assessment: [1] health points.
