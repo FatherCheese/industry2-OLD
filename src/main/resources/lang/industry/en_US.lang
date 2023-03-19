@@ -45,7 +45,7 @@ tile.industry.machine.generator.name=Generator
 tile.industry.machine.generator.desc=Powers your machinery using fossil fuels.
 
 tile.industry.machine.generator.solar.name=Solar Generator
-tile.industry.machine.generator.solar.desc=
+tile.industry.machine.generator.solar.desc=Powers your machinery using the sun itself!
 
 item.industry.raw.copper.name=Raw Copper Ore
 item.industry.raw.copper.desc=A chunk of unprocessed copper. Can be smelted into a copper ingot.

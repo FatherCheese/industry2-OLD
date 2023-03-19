@@ -5,7 +5,6 @@ import net.minecraft.src.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sunsetsatellite.energyapi.EnergyAPI;
-import sunsetsatellite.energyapi.template.blocks.BlockGenerator;
 import turniplabs.halplibe.helper.*;
 import turniplabs.industry.block.*;
 import turniplabs.industry.block.machines.BlockGeneratorInd;
@@ -38,8 +37,7 @@ public class ModIndustry2 implements ModInitializer {
     public static final Block ORE_COPPER_LIMESTONE = BlockHelper.createBlock(MOD_ID, new BlockOreCopper(nextBlock(), Material.rock), "ore.copper.limestone", "ore_copper_limestone.png", Block.soundStoneFootstep, 3.0f, 3.0f, 0.0f);
     public static final Block ORE_COPPER_GRANITE = BlockHelper.createBlock(MOD_ID, new BlockOreCopper(nextBlock(), Material.rock), "ore.copper.granite", "ore_copper_granite.png", Block.soundStoneFootstep, 3.0f, 3.0f, 0.0f);
     public static final Block BLOCK_OF_COPPER = BlockHelper.createBlock(MOD_ID, new Block(nextBlock(), Material.iron), "block.copper", "block_copper_top.png", "block_copper_bottom.png", "block_copper_sides.png", Block.soundMetalFootstep, 5.0f, 6.0f, 0.0f);
-    public static final Block COPPER_CABLE = BlockHelper.createBlock(MOD_ID, new BlockCable(nextBlock(), Material.iron, 32, 0, 32, 1), "cable.copper", "cable_copper.png", Block.soundClothFootstep, 0.0f, 0.0f, 0.0f);
-    public static final Block TIN_CABLE = BlockHelper.createBlock(MOD_ID, new BlockCable(nextBlock(), Material.iron, 8, 0, 8, 0), "cable.tin", "block_tin_sides.png", Block.soundClothFootstep, 0.0f, 0.0f, 0.0f);
+    public static final Block COPPER_CABLE = BlockHelper.createBlock(MOD_ID, new BlockCable(nextBlock(), Material.iron, 32, 0, 32, 0), "cable.copper", "cable_copper.png", Block.soundClothFootstep, 0.0f, 0.0f, 0.0f);
 
     public static final Item RAW_COPPER = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "raw.copper", "raw_copper.png");
     public static final Item DUST_COPPER = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "dust.copper", "dust_copper.png");
@@ -51,6 +49,7 @@ public class ModIndustry2 implements ModInitializer {
     public static final Block ORE_TIN_LIMESTONE = BlockHelper.createBlock(MOD_ID, new BlockOreTin(nextBlock(), Material.rock), "ore.tin.limestone", "ore_tin_limestone.png", Block.soundStoneFootstep, 3.0f, 3.0f, 0.0f);
     public static final Block ORE_TIN_GRANITE = BlockHelper.createBlock(MOD_ID, new BlockOreTin(nextBlock(), Material.rock), "ore.tin.granite", "ore_tin_granite.png", Block.soundStoneFootstep, 3.0f, 3.0f, 0.0f);
     public static final Block BLOCK_OF_TIN = BlockHelper.createBlock(MOD_ID, new Block(nextBlock(), Material.iron), "block.tin", "block_tin_top.png", "block_tin_bottom.png", "block_tin_sides.png", Block.soundMetalFootstep, 5.0f, 6.0f, 0.0f);
+    public static final Block TIN_CABLE = BlockHelper.createBlock(MOD_ID, new BlockCable(nextBlock(), Material.iron, 256, 0, 256, 2), "cable.tin", "block_tin_sides.png", Block.soundClothFootstep, 0.0f, 0.0f, 0.0f);
 
     public static final Item RAW_TIN = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "raw.tin", "raw_tin.png");
     public static final Item DUST_TIN = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "dust.tin", "dust_tin.png");
@@ -88,6 +87,8 @@ public class ModIndustry2 implements ModInitializer {
 
     public static final Block MACHINE_GENERATOR = BlockHelper.createBlock(MOD_ID, new BlockGeneratorInd(nextBlock(), Material.iron), "machine.generator", "machine_casing_basic.png", "machine_casing_basic.png", "machine_generator.png", "machine_casing_basic.png", "machine_casing_basic.png", "machine_casing_basic.png", Block.soundMetalFootstep, 3.0f, 3.0f, 0.0f);
     public static final Block MACHINE_GENERATOR_SOLAR = BlockHelper.createBlock(MOD_ID, new BlockSolarGenerator(nextBlock(), Material.iron), "machine.generator.solar", "machine_generator_solar_top.png", "machine_casing_basic.png", "machine_casing_basic.png", Block.soundMetalFootstep, 3.0f, 3.0f, 0.0f);
+
+    public static final Block MACHINE_RELAY = BlockHelper.createBlock(MOD_ID, new BlockRelay(nextBlock(), Material.iron, 256, 0, 256), "machine.relay", "machine_casing_basic.png", Block.soundMetalFootstep, 3.0f, 3.0f, 0.0f);
 
     public static final Item CIRCUIT_BASIC = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "circuit.basic", "circuit_basic.png");
     public static final Item CIRCUIT_ADVANCED = ItemHelper.createItem(MOD_ID, new Item(nextItem()), "circuit.advanced", "circuit_advanced.png");

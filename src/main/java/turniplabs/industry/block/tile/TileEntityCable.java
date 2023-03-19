@@ -31,21 +31,24 @@ public class TileEntityCable extends TileEntityEnergyConductorDamageable {
     public void updateEntity() {
 
         if (dangerLevel > 0 && this.energy >= (dangerLevel * 10)) {
-            List<Entity> list = this.worldObj.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.getBoundingBox((double) this.xCoord - 0.25, (double) this.yCoord - 0.25, (double) this.zCoord - 0.25, (double) this.xCoord + 1.25, (double) this.yCoord + 1.25, (double) this.zCoord + 1.25));
+            List<Entity> list = this.worldObj.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.getBoundingBox((double) this.xCoord - 0.55, (double) this.yCoord - 0.55, (double) this.zCoord - 0.55, (double) this.xCoord + 1.55, (double) this.yCoord + 1.55, (double) this.zCoord + 1.55));
             for (Entity entity : list) {
                 if (entity instanceof EntityLiving) {
-
-                    for (int run = 0; run < random.nextInt(3); run++) {
-                        // get some random coordinate within the block's boundaries
-                        double x = random.nextDouble() + entity.posX;
-                        double y = -1 + random.nextDouble() + random.nextInt(2) + entity.posY ;
-                        double z = random.nextDouble() + entity.posZ;
-
-                        worldObj.spawnParticle("flame", x, y, z, 0.0, 0.0, 0.0);
-                    }
-
+                    int prevHealth = ((EntityLiving) entity).health;
                     entity.attackEntityFrom(null, dangerLevel, DamageType.BLAST);
-                    this.energy -= (dangerLevel * 10);
+
+                    // only generate particles if player actually took damage.
+                    if (prevHealth != ((EntityLiving) entity).health) {
+                        for (int run = 0; run < random.nextInt(11); run++) {
+                            // get some random coordinate within the block's boundaries
+                            double x = random.nextDouble() + entity.posX;
+                            double y = -1 + random.nextDouble() + random.nextInt(2) + entity.posY;
+                            double z = random.nextDouble() + entity.posZ;
+
+                            worldObj.spawnParticle("flame", x, y, z, 0.0, 0.0, 0.0);
+                        }
+                        this.energy -= (dangerLevel * 10);
+                    }
                 }
             }
         }

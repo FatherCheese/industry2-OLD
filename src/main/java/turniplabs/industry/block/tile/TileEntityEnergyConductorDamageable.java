@@ -10,13 +10,14 @@ import java.util.Random;
 public abstract class TileEntityEnergyConductorDamageable extends TileEntityEnergyConductor implements IMachineCondition {
 
     /*                             /
-    /  Energy Ratings:             /
-    /  8RC = Low voltage           /
-    /  32RC = Medium voltage       /
-    /  128RC = High voltage        /
-    /  256RC = Super High voltage */
+    / Energy Ratings:              /
+    / 32RC = Low voltage           /
+    / 256RC = Medium voltage       /
+    / 512RC = High voltage         /
+    / 1024RC = Super High voltage */
 
     protected int maxMachineHealth = 100;
+    protected int healAmount = 1;
 
     protected int machineHealth = maxMachineHealth;
     protected boolean hasBeenDamagedInLastTick;
@@ -68,7 +69,7 @@ public abstract class TileEntityEnergyConductorDamageable extends TileEntityEner
             }
 
             // heal itself overtime.
-            if (!hasBeenDamagedInLastTick && random.nextInt(4) == 0) machineHealth += 1;
+            if (!hasBeenDamagedInLastTick && random.nextInt(4) == 0) machineHealth += healAmount;
             hasBeenDamagedInLastTick = false;
         }
     }
