@@ -10,19 +10,21 @@ public class BlockCable extends BlockContainer implements ICustomDescription {
     int capacity;
     int energy;
     int transfer;
+    int dangerLevel;
 
-    public BlockCable(int i, Material material, int capacity, int energy, int transfer) {
+    public BlockCable(int i, Material material, int capacity, int energy, int transfer, int dangerLevel) {
         super(i, material);
         this.capacity = capacity;
         this.energy = energy;
         this.transfer = transfer;
+        this.dangerLevel = dangerLevel;
     }
 
 
 
     @Override
     protected TileEntity getBlockEntity() {
-        return new TileEntityCable(capacity, energy, transfer);
+        return new TileEntityCable(capacity, energy, transfer, dangerLevel);
     }
 
     @Override
