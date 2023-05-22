@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import turniplabs.industry.ModIndustry2;
+import turniplabs.industry.block.IndustryBlocks;
 
 import java.util.Random;
 
@@ -34,7 +34,7 @@ public class ChunkProviderGenerateOverworldMixin {
             int copperY = rand.nextInt(terrainMaxHeight) / 2;
             int copperZ = z1 + rand.nextInt(16);
 
-            new WorldGenMinable(ModIndustry2.ORE_COPPER_STONE.blockID, 8,true).generate(worldObj, rand, copperX, copperY, copperZ);
+            new WorldGenMinable(IndustryBlocks.INSTANCE.getORE_COPPER_STONE().blockID, 8,true).generate(worldObj, rand, copperX, copperY, copperZ);
         }
 
         for (int tin = 0; tin < 16 * heightModifier; ++tin) {
@@ -42,7 +42,7 @@ public class ChunkProviderGenerateOverworldMixin {
             int tinY = rand.nextInt(terrainMaxHeight) / 2;
             int tinZ = z1 + rand.nextInt(16);
 
-            new WorldGenMinable(ModIndustry2.ORE_TIN_STONE.blockID, 6, true).generate(worldObj, rand, tinX, tinY, tinZ);
+            new WorldGenMinable(IndustryBlocks.INSTANCE.getORE_TIN_STONE().blockID, 6, true).generate(worldObj, rand, tinX, tinY, tinZ);
         }
     }
 }

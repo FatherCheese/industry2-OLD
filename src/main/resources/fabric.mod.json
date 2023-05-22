@@ -3,17 +3,16 @@
   "id": "industry",
   "version": "${version}",
 
-  "name": "Better than Industry2",
-  "description": "This mod aims to add useful tech and machines to BTA.",
+  "name": "Industry2",
+  "description": "A BTA recreation of IC2 and Buildcraft, made by fans.",
   "authors": [
     "Turnip Labs",
-    "Baboonbuddy/Jimmy Cakes",
+    "jimmy Cakes",
     "Kheprep"
   ],
   "contact": {
     "homepage": "",
-    "sources": "",
-    "issues": "https://github.com/Turnip-Labs/industry2/issues"
+    "sources": ""
   },
 
   "license": "CC0-1.0",
@@ -21,7 +20,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "turniplabs.industry.ModIndustry2"
+      {
+        "adapter": "kotlin",
+        "value": "turniplabs.industry.Industry2Kt::init"
+      }
     ]
   },
   "mixins": [
@@ -29,8 +31,8 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.13.3",
-    "halplibe": ">=1.1.4"
+    "fabricloader": ">=0.14.7",
+    "fabric-language-kotlin": "*"
   },
   "suggests": {
   }

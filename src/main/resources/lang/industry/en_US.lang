@@ -23,10 +23,10 @@ tile.industry.block.tin.desc=A solid block of tin.
 tile.industry.block.bronze.name=Block of Bronze
 tile.industry.block.bronze.desc=A solid block of bronze.
 
-tile.industry.leaves.rubber.name=Rubber-Wood Leaves
-tile.industry.leaves.rubber.desc=Leaves from a rubber-wood tree.
 tile.industry.log.rubber.name=Rubber-Wood Log
 tile.industry.log.rubber.desc=A log from a rubber-wood tree.
+tile.industry.leaves.rubber.name=Rubber-Wood Leaves
+tile.industry.leaves.rubber.desc=Leaves from a rubber-wood tree.
 tile.industry.sapling.rubber.name=Rubber-Wood Sapling
 tile.industry.sapling.rubber.desc=Plant to grow a rubber-wood tree.
 
@@ -72,6 +72,19 @@ item.industry.ingot.bronze.name=Bronze Ingot
 item.industry.ingot.bronze.desc=Tin and copper fused into a useful alloy.
 item.industry.ingot.rubber.name=Rubber Ingot
 item.industry.ingot.rubber.desc=A rubber bar used for insulation.
+
+item.industry.plate.copper.name=Copper Plate
+item.industry.plate.copper.desc=A copper ingot smashed into a plate.
+item.industry.plate.tin.name=Tin Plate
+item.industry.plate.tin.desc=A tin ingot smashed into a plate.
+item.industry.plate.bronze.name=Bronze Plate
+item.industry.plate.bronze.desc=A bronze ingot smashed into a plate.
+item.industry.plate.iron.name=Iron Plate
+item.industry.plate.iron.desc=An iron ingot smashed into a plate.
+item.industry.plate.gold.name=Gold Plate
+item.industry.plate.gold.desc=A gold ingot smashed into a plate.
+item.industry.plate.steel.name=Steel Plate
+item.industry.plate.steel.desc=A steel ingot smashed into a plate.
 
 item.industry.resin.name=Tree Resin
 item.industry.resin.desc=Sticky but not quite as gross. Still sticks to your hands, however.
