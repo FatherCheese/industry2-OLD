@@ -32,7 +32,6 @@ tile.industry.sapling.rubber.desc=Plant to grow a rubber-wood tree.
 
 tile.industry.cable.copper.name=Copper Cable
 tile.industry.cable.copper.desc=a cubic meter long cable, used for transporting electric current.
-
 tile.industry.cable.tin.name=Tin Cable
 tile.industry.cable.tin.desc=a cubic meter long cable, used for transporting electric current.
 
@@ -43,9 +42,11 @@ tile.industry.machine.casing.advanced.desc=A steel casing used to cover advanced
 
 tile.industry.machine.generator.name=Generator
 tile.industry.machine.generator.desc=Powers your machinery using fossil fuels.
-
 tile.industry.machine.generator.solar.name=Solar Generator
 tile.industry.machine.generator.solar.desc=Powers your machinery using the sun itself!
+
+tile.industry.machine.relay.name=Power Relay
+tile.industry.machine.relay.desc=A toggleable gate for electricity to pass through.
 
 item.industry.raw.copper.name=Raw Copper Ore
 item.industry.raw.copper.desc=A chunk of unprocessed copper. Can be smelted into a copper ingot.

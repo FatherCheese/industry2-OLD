@@ -1,6 +1,7 @@
-package turniplabs.industry.container
+package turniplabs.industry.gui
 
 import net.minecraft.src.EntityPlayer
+import net.minecraft.src.ICrafting
 import net.minecraft.src.IInventory
 import net.minecraft.src.Slot
 import sunsetsatellite.energyapi.template.containers.ContainerEnergy
@@ -28,12 +29,13 @@ class ContainerIndustryGenerator(iInventory: IInventory?, tileEntity: TileEntity
 
     override fun updateInventory() {
         super.updateInventory()
-        for (crafter in crafters) {
+        for (crafter: ICrafting in crafters) {
             if (currentBurnTime != (tile as TileEntityIndustryGenerator).currentBurnTime) crafter.updateCraftingInventoryInfo(
                 this,
                 1,
                 (tile as TileEntityIndustryGenerator).currentBurnTime
             )
+
             if (maxBurnTime != (tile as TileEntityIndustryGenerator).maxBurnTime) crafter.updateCraftingInventoryInfo(
                 this,
                 2,

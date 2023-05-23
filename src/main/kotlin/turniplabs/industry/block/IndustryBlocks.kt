@@ -6,6 +6,9 @@ import net.minecraft.src.Material
 import sunsetsatellite.energyapi.template.blocks.BlockWire
 import turniplabs.halplibe.helper.BlockHelper
 import turniplabs.industry.Industry2
+import turniplabs.industry.block.machine.BlockIndustryGenerator
+import turniplabs.industry.block.machine.BlockRelay
+import turniplabs.industry.block.machine.BlockSolarGenerator
 
 object IndustryBlocks {
 
@@ -254,7 +257,7 @@ object IndustryBlocks {
 
     val MACHINE_GENERATOR_SOLAR: Block = BlockHelper.createBlock(
         Industry2.MODID,
-        Block(nextBlockID(), Material.iron),
+        BlockSolarGenerator(nextBlockID(), Material.iron),
         "machine.generator.solar",
         "machine_generator_solar_top.png",
         "machine_casing_basic.png",
@@ -267,7 +270,7 @@ object IndustryBlocks {
 
     val MACHINE_RELAY: Block = BlockHelper.createBlock(
         Industry2.MODID,
-        Block(nextBlockID(), Material.iron),
+        BlockRelay(nextBlockID(), Material.iron, 256, 0, 256),
         "machine.relay",
         "machine_casing_basic.png",
         Block.soundMetalFootstep,

@@ -1,9 +1,9 @@
-package turniplabs.industry.block
+package turniplabs.industry.block.machine
 
 import net.minecraft.src.*
 import sunsetsatellite.energyapi.EnergyAPI
 import turniplabs.industry.block.tile.TileEntityIndustryGenerator
-import turniplabs.industry.container.ContainerIndustryGenerator
+import turniplabs.industry.gui.ContainerIndustryGenerator
 import turniplabs.industry.gui.GuiIndustryGenerator
 
 

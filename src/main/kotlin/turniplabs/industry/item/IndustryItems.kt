@@ -1,7 +1,6 @@
 package turniplabs.industry.item
 
 import net.minecraft.src.Item
-import sunsetsatellite.energyapi.template.items.ItemBattery
 import turniplabs.halplibe.helper.ItemHelper
 import turniplabs.industry.Industry2
 
@@ -42,12 +41,12 @@ object IndustryItems {
         val INGOT_RUBBER: Item = ItemHelper.createItem(Industry2.MODID, Item(nextItemID()), "ingot.rubber", "ingot_rubber.png")
 
         // TOOLS
-        val TOOL_TAP: Item = ItemHelper.createItem(Industry2.MODID, Item(nextItemID()), "tool.tap", "tree_tap.png")
-        val TOOL_MULTIMETER: Item = ItemHelper.createItem(Industry2.MODID, Item(nextItemID()), "tool.multimeter", "tool_multimeter.png")
+        val TOOL_TAP: Item = ItemHelper.createItem(Industry2.MODID, Item(nextItemID()), "tool.tap", "tree_tap.png").setMaxStackSize(1)
+        val TOOL_MULTIMETER: Item = ItemHelper.createItem(Industry2.MODID, ItemMultimeter(nextItemID()), "tool.multimeter", "tool_multimeter.png").setMaxStackSize(1)
         val TOOL_WRENCH: Item = ItemHelper.createItem(Industry2.MODID, Item(nextItemID()), "tool.wrench", "tool_wrench.png")
 
         // MACHINES
-        val BATTERY_REDSTONE: Item = ItemHelper.createItem(Industry2.MODID, ItemBattery(nextItemID()), "battery.redstone", "battery_redstone_0.png")
+        val BATTERY_REDSTONE: Item = ItemHelper.createItem(Industry2.MODID, ItemBatteryRedstone(nextItemID()), "battery.redstone", "battery_redstone_0.png").setMaxStackSize(1)
 
         val CIRCUIT_BASIC: Item = ItemHelper.createItem(Industry2.MODID, Item(nextItemID()), "circuit.basic", "circuit_basic.png")
         val CIRCUIT_ADVANCED: Item = ItemHelper.createItem(Industry2.MODID, Item(nextItemID()), "circuit.advanced", "circuit_advanced.png")

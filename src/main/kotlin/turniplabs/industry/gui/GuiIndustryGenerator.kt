@@ -5,9 +5,10 @@ import net.minecraft.src.InventoryPlayer
 import org.lwjgl.opengl.GL11
 import sunsetsatellite.energyapi.util.Config
 import turniplabs.industry.block.tile.TileEntityIndustryGenerator
-import turniplabs.industry.container.ContainerIndustryGenerator
 
-class GuiIndustryGenerator(container: InventoryPlayer?, private val tile: TileEntityIndustryGenerator) : GuiContainer(ContainerIndustryGenerator(container!!, tile)) {
+class GuiIndustryGenerator(container: InventoryPlayer?, private val tile: TileEntityIndustryGenerator) : GuiContainer(
+    ContainerIndustryGenerator(container!!, tile)
+) {
 
     override fun drawGuiContainerBackgroundLayer(f: Float) {
         val texture: Int = mc.renderEngine.getTexture("/assets/industry/gui/generator.png")

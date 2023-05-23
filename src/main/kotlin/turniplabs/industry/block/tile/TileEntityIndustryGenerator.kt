@@ -63,17 +63,17 @@ class TileEntityIndustryGenerator : TileEntityEnergyConductor(), IInventory {
     override fun decrStackSize(i: Int, j: Int): ItemStack? {
         return if (contents[i] != null) {
             if (contents[i]!!.stackSize <= j) {
-                val itemstack: ItemStack? = contents[i]
+                val itemStack: ItemStack? = contents[i]
                 contents[i] = null
                 onInventoryChanged()
-                return itemstack!!
+                return itemStack!!
             }
-            val itemstack1 = contents[i]!!.splitStack(j)
+            val itemStack: ItemStack = contents[i]!!.splitStack(j)
             if (contents[i]!!.stackSize == 0) {
                 contents[i] = null
             }
             onInventoryChanged()
-            itemstack1
+            itemStack
         } else {
             null
         }
@@ -97,12 +97,14 @@ class TileEntityIndustryGenerator : TileEntityEnergyConductor(), IInventory {
 
     override fun readFromNBT(nbttagcompound: NBTTagCompound) {
         super.readFromNBT(nbttagcompound)
-        val nbttaglist = nbttagcompound.getTagList("Items")
+        val nbtTagList: NBTTagList = nbttagcompound.getTagList("Items")
+
         contents = arrayOfNulls(sizeInventory)
-        for (i in 0 until nbttaglist.tagCount()) {
-            val nbttagcompound1 = nbttaglist.tagAt(i) as NBTTagCompound
-            val j = nbttagcompound1.getByte("Slot").toInt() and 0xff
-            if (j < contents.size) contents[j] = ItemStack(nbttagcompound1)
+        for (i in 0 until nbtTagList.tagCount()) {
+            val nbtTagCompound1 = nbtTagList.tagAt(i) as NBTTagCompound
+            val nbtTagCompoundByte: Int = nbtTagCompound1.getByte("Slot").toInt() and 0xff
+
+            if (nbtTagCompoundByte < contents.size) contents[nbtTagCompoundByte] = ItemStack(nbtTagCompound1)
         }
         currentBurnTime = nbttagcompound.getInteger("BurnTime")
         maxBurnTime = nbttagcompound.getInteger("MaxBurnTime")
@@ -111,20 +113,20 @@ class TileEntityIndustryGenerator : TileEntityEnergyConductor(), IInventory {
 
     override fun writeToNBT(nbttagcompound: NBTTagCompound) {
         super.writeToNBT(nbttagcompound)
-        val nbttaglist = NBTTagList()
+        val nbtTagList = NBTTagList()
         for (i in contents.indices) {
             if (contents[i] != null) {
-                val nbttagcompound1 = NBTTagCompound()
-                nbttagcompound1.setByte("Slot", i.toByte())
-                contents[i]!!.writeToNBT(nbttagcompound1)
-                nbttaglist.setTag(nbttagcompound1)
+                val nbtTagCompound1 = NBTTagCompound()
+                nbtTagCompound1.setByte("Slot", i.toByte())
+                contents[i]!!.writeToNBT(nbtTagCompound1)
+                nbtTagList.setTag(nbtTagCompound1)
             }
         }
         val fuel = NBTTagCompound()
         if (currentFuel != null) {
             currentFuel!!.writeToNBT(fuel)
         }
-        nbttagcompound.setTag("Items", nbttaglist)
+        nbttagcompound.setTag("Items", nbtTagList)
         nbttagcompound.setCompoundTag("CurrentFuel", fuel)
         nbttagcompound.setInteger("BurnTime", currentBurnTime.toShort().toInt())
         nbttagcompound.setInteger("MaxBurnTime", maxBurnTime.toShort().toInt())

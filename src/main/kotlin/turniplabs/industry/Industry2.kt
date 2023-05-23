@@ -7,7 +7,9 @@ import turniplabs.halplibe.helper.EntityHelper
 import turniplabs.industry.block.IndustryBlocks
 import turniplabs.industry.block.tile.TileEntityCable
 import turniplabs.industry.block.tile.TileEntityIndustryGenerator
+import turniplabs.industry.block.tile.TileEntitySolarGenerator
 import turniplabs.industry.gui.GuiIndustryGenerator
+import turniplabs.industry.gui.GuiSolarGenerator
 import turniplabs.industry.item.IndustryItems
 
 object Industry2 {
@@ -24,6 +26,8 @@ fun init() {
 
     EntityHelper.createTileEntity(TileEntityCable::class.java, "CABLE")
     EntityHelper.createTileEntity(TileEntityIndustryGenerator::class.java, "GENERATOR")
+    EntityHelper.createTileEntity(TileEntitySolarGenerator::class.java, "SOLAR_GENERATOR")
 
     EnergyAPI.addToNameGuiMap("Generator", GuiIndustryGenerator::class.java, TileEntityIndustryGenerator::class.java)
+    EnergyAPI.addToNameGuiMap("SolarGenerator", GuiSolarGenerator::class.java, TileEntitySolarGenerator::class.java)
 }

@@ -6,7 +6,7 @@ import sunsetsatellite.energyapi.util.Config
 import sunsetsatellite.energyapi.util.ICustomDescription
 import turniplabs.industry.block.tile.TileEntityCable
 
-class BlockCable(
+open class BlockCable(
     i: Int,
     material: Material?,
     private val capacity: Int,
