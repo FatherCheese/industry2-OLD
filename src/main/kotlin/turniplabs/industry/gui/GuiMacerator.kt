@@ -4,14 +4,14 @@ import net.minecraft.src.GuiContainer
 import net.minecraft.src.InventoryPlayer
 import org.lwjgl.opengl.GL11
 import sunsetsatellite.energyapi.util.Config
-import turniplabs.industry.block.tile.TileEntityIndustryGenerator
+import turniplabs.industry.block.tile.TileEntityMacerator
 
-class GuiIndustryGenerator(container: InventoryPlayer?, private val tile: TileEntityIndustryGenerator) : GuiContainer(
-    ContainerIndustryGenerator(container!!, tile)
+class GuiMacerator(container: InventoryPlayer?, private val tile: TileEntityMacerator) : GuiContainer(
+    ContainerMacerator(container!!, tile)
 ) {
 
     override fun drawGuiContainerBackgroundLayer(f: Float) {
-        val texture: Int = mc.renderEngine.getTexture("/assets/industry/gui/generator.png")
+        val texture: Int = mc.renderEngine.getTexture("/assets/industry/gui/macerator.png")
 
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f)
         mc.renderEngine.bindTexture(texture)
@@ -21,12 +21,15 @@ class GuiIndustryGenerator(container: InventoryPlayer?, private val tile: TileEn
         drawTexturedModalRect(textX, textY, 0, 0, xSize, ySize)
 
         val power: Double = (tile.energy.toFloat() / tile.capacity.toFloat()).toDouble()
-        drawTexturedModalRect(textX + 80, textY + 39, 176, 0, (power * 16).toInt(), 8)
+        drawTexturedModalRect(textX + 56, textY + 39, 176, 0, (power * 16).toInt(), 8)
+
+        val progressBar: Int = tile.getCrushProgressScaled(23)
+        this.drawTexturedModalRect(textX + 79, textY + 35, 176, 8, progressBar + 1, 23)
     }
 
     override fun drawGuiContainerForegroundLayer() {
         super.drawGuiContainerForegroundLayer()
-        fontRenderer.drawString("Generator", 64, 6, 0xFF404040.toInt())
+        fontRenderer.drawString("Macerator", 64, 6, 0xFF404040.toInt())
         fontRenderer.drawString("Inventory", 8, (ySize - 96) + 2, 0xFF404040.toInt())
     }
 
@@ -36,7 +39,7 @@ class GuiIndustryGenerator(container: InventoryPlayer?, private val tile: TileEn
         super.drawScreen(x, y, renderPartialTicks)
 
         val text: StringBuilder = StringBuilder()
-        if (x > screenX + 80 && x < screenX + 96) {
+        if (x > screenX + 56 && x < screenX + 72) {
             if (y > screenY + 39 && y < screenY + 47) {
                 text.append(Config.getFromConfig("energyName", "Energy")).append(": ").append(tile.energy).append(" ")
                     .append(

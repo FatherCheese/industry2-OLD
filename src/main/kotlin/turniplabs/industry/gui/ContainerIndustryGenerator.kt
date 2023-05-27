@@ -52,7 +52,7 @@ class ContainerIndustryGenerator(iInventory: IInventory?, tileEntity: TileEntity
     }
 
     override fun isUsableByPlayer(entityPlayer: EntityPlayer): Boolean {
-        return true
+        return (tile as TileEntityIndustryGenerator).canInteractWith(entityPlayer)
     }
 
     override fun quickMoveItems(i: Int, entityPlayer: EntityPlayer, bl: Boolean, bl2: Boolean) {}

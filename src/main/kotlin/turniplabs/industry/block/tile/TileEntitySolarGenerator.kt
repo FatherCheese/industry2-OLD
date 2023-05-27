@@ -1,10 +1,12 @@
 package turniplabs.industry.block.tile
 
 import net.minecraft.src.Block
+import net.minecraft.src.Season
 import sunsetsatellite.energyapi.template.tiles.TileEntityBatteryBox
 import sunsetsatellite.energyapi.util.Connection
 import sunsetsatellite.energyapi.util.Direction
 import kotlin.math.min
+
 
 class TileEntitySolarGenerator : TileEntityBatteryBox() {
     var generatedEnergy: Int = 0
@@ -20,14 +22,18 @@ class TileEntitySolarGenerator : TileEntityBatteryBox() {
         if (energy < capacity && isFacingSky()) {
             generatedEnergy = 4
 
-            if (worldObj.getBlockTemperature(xCoord, zCoord) > 0.85f &&
-                worldObj.getBlockHumidity(xCoord, zCoord) < 0.30f) generatedEnergy += 2
+            if (worldObj.getBlockTemperature(xCoord, zCoord) > 0.85f && worldObj.getBlockHumidity(xCoord, zCoord) < 0.30f)
+                generatedEnergy += 2
 
-            if (worldObj.getBlockTemperature(xCoord, zCoord) < 0.40f &&
-                worldObj.getBlockHumidity(xCoord, zCoord) < 0.30f) generatedEnergy -= 2
+            if (worldObj.getBlockTemperature(xCoord, zCoord) < 0.40f && worldObj.getBlockHumidity(xCoord, zCoord) < 0.30f)
+                generatedEnergy -= 2
 
-            if (generatedEnergy > 0)
-                energy = min(energy + generatedEnergy, capacity)
+            if (yCoord > 150) generatedEnergy += yCoord / 100
+
+            if (worldObj.currentSeason === Season.surfaceWinter || worldObj.currentSeason === Season.surfaceFall) generatedEnergy -= 2
+            generatedEnergy -= worldObj.skylightSubtracted
+
+            if (generatedEnergy > 0) energy = min(energy + generatedEnergy, capacity)
         }
 
         super.updateEntity()

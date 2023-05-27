@@ -1,54 +1,68 @@
 package turniplabs.industry.block.tile
 
 import net.minecraft.src.*
-import sunsetsatellite.energyapi.api.LookupFuelEnergy
 import sunsetsatellite.energyapi.impl.ItemEnergyContainer
 import sunsetsatellite.energyapi.impl.TileEntityEnergyConductor
 import sunsetsatellite.energyapi.util.Connection
 import sunsetsatellite.energyapi.util.Direction
+import turniplabs.industry.block.IndustryBlocks
+import turniplabs.industry.block.machine.BlockMacerator
+import turniplabs.industry.recipes.RecipesMacerator
 
 // NOTE - this entire class was auto-translated to Kotlin due to Array out of bounds errors when rewritten, go through this later!
-class TileEntityIndustryGenerator : TileEntityEnergyConductor(), IInventory {
+class TileEntityMacerator : TileEntityEnergyConductor(), IInventory {
+    var active = false
     private var contents: Array<ItemStack?>
-    var maxBurnTime = 0
-    var currentBurnTime = 0
-    private var currentFuel: ItemStack? = null
+    private var currentCrushTime = 0
+    private var maxCrushTime = 256
 
     init {
         setCapacity(4096)
-        setTransfer(32)
-        contents = arrayOfNulls(2)
-        for (dir: Direction in Direction.values()) setConnection(dir, Connection.OUTPUT)
+        setTransfer(0)
+        setMaxReceive(32)
+        contents = arrayOfNulls(3)
+        for (dir: Direction in Direction.values()) setConnection(dir, Connection.INPUT)
     }
 
+    // TODO - variable "active" is only updating when the block next to is updated
     override fun updateEntity() {
         super.updateEntity()
-        if (currentBurnTime > 0) {
-            --currentBurnTime
-            modifyEnergy(getEnergyYieldForItem(currentFuel))
-        }
-        if (currentBurnTime == 0) {
-            currentBurnTime = getBurnTimeFromItem(contents[1]) / 5
-            maxBurnTime = currentBurnTime
-            if (currentBurnTime > 0) {
-                currentFuel = contents[1]
-                onInventoryChanged()
-                if (contents[1] != null) {
-                    --contents[1]!!.stackSize
-                    if (contents[1]!!.stackSize == 0) contents[1] = null
-                }
-            } else currentFuel = null
-        }
-        if (getStackInSlot(0) != null && getStackInSlot(0)?.item is ItemEnergyContainer) {
-            val stack: ItemStack? = getStackInSlot(0)
-            provide(stack, getMaxProvide(), false)
-            onInventoryChanged()
-        }
+        val hasEnergy: Boolean = energy > 0
+        var machineUpdated = false
+
         if (getStackInSlot(1) != null && getStackInSlot(1)?.item is ItemEnergyContainer) {
             val stack: ItemStack? = getStackInSlot(1)
             receive(stack, getMaxReceive(), false)
             onInventoryChanged()
         }
+
+        if (!worldObj!!.isMultiplayerAndNotHost) {
+            if (worldObj!!.getBlockId(xCoord, yCoord, zCoord) == IndustryBlocks.MACHINE_MACERATOR.blockID &&
+                currentCrushTime == 0 &&
+                contents[0] == null
+                ) {
+                BlockMacerator.updateBlockState(true, worldObj, xCoord, yCoord, zCoord)
+                machineUpdated = true
+
+            }
+
+            if (hasEnergy && canCrush()) {
+                ++currentCrushTime
+                --energy
+                active = true
+                if (currentCrushTime == maxCrushTime) {
+                    currentCrushTime = 0
+                    crushItem()
+                    active = false
+                    machineUpdated = true
+                }
+            } else {
+                currentCrushTime = 0
+                active = false
+            }
+        }
+        if (machineUpdated) this.onInventoryChanged()
+
     }
 
     override fun getSizeInventory(): Int {
@@ -86,12 +100,8 @@ class TileEntityIndustryGenerator : TileEntityEnergyConductor(), IInventory {
         onInventoryChanged()
     }
 
-    override fun onInventoryChanged() {
-        super.onInventoryChanged()
-    }
-
     override fun getInvName(): String {
-        return "Generator"
+        return "Macerator"
     }
 
     override fun readFromNBT(nbttagcompound: NBTTagCompound) {
@@ -105,9 +115,6 @@ class TileEntityIndustryGenerator : TileEntityEnergyConductor(), IInventory {
 
             if (nbtTagCompoundByte < contents.size) contents[nbtTagCompoundByte] = ItemStack(nbtTagCompound1)
         }
-        currentBurnTime = nbttagcompound.getInteger("BurnTime")
-        maxBurnTime = nbttagcompound.getInteger("MaxBurnTime")
-        currentFuel = ItemStack(nbttagcompound.getCompoundTag("CurrentFuel"))
     }
 
     override fun writeToNBT(nbttagcompound: NBTTagCompound) {
@@ -121,14 +128,7 @@ class TileEntityIndustryGenerator : TileEntityEnergyConductor(), IInventory {
                 nbtTagList.setTag(nbtTagCompound1)
             }
         }
-        val fuel = NBTTagCompound()
-        if (currentFuel != null) {
-            currentFuel!!.writeToNBT(fuel)
-        }
         nbttagcompound.setTag("Items", nbtTagList)
-        nbttagcompound.setCompoundTag("CurrentFuel", fuel)
-        nbttagcompound.setInteger("BurnTime", currentBurnTime.toShort().toInt())
-        nbttagcompound.setInteger("MaxBurnTime", maxBurnTime.toShort().toInt())
     }
 
     override fun getInventoryStackLimit(): Int {
@@ -145,18 +145,34 @@ class TileEntityIndustryGenerator : TileEntityEnergyConductor(), IInventory {
         ) <= 64.0
     }
 
-    private fun getBurnTimeFromItem(itemStack: ItemStack?): Int {
-        return if (itemStack == null) 0 else LookupFuelFurnace.fuelFurnace().getFuelYield(itemStack.item.itemID)
+    fun getCrushProgressScaled(i: Int): Int {
+        return if (maxCrushTime == 0) 0 else currentCrushTime * i / maxCrushTime
     }
 
-    private fun getEnergyYieldForItem(itemStack: ItemStack?): Int {
-        return if (itemStack == null) 0 else LookupFuelEnergy.fuelEnergy().getEnergyYield(itemStack.item.itemID)
+    private fun canCrush(): Boolean {
+        if (contents[0] == null) return false
+
+        val itemStack: ItemStack = RecipesMacerator.crushing().getResult(contents[0]!!.item.itemID)
+        if (itemStack == null) return false
+
+        if (contents[2] == null) return true
+
+        if (!contents[2]!!.isItemEqual(itemStack)) return false
+
+        if (contents[2]!!.stackSize < inventoryStackLimit && contents[2]!!.stackSize < contents[2]!!.maxStackSize)
+            return true
+
+        return contents[2]!!.stackSize < itemStack.maxStackSize
     }
 
-    fun getBurnTimeRemainingScaled(i: Int): Int {
-        return if (maxBurnTime == 0) 0 else currentBurnTime * i / maxBurnTime
-    }
+    private fun crushItem() {
+        if (canCrush()) {
+            val itemStack: ItemStack = RecipesMacerator.crushing().getResult(contents[0]!!.item.itemID)
+            if (contents[2] == null) contents[2] = itemStack.copy()
+            else if (contents[2]!!.itemID == itemStack.itemID) ++contents[2]!!.stackSize
 
-    val isBurning: Boolean
-        get() = currentBurnTime > 0
+            --contents[0]!!.stackSize
+            if (contents[0]!!.stackSize <= 0) contents[0] = null
+        }
+    }
 }

@@ -3,10 +3,10 @@ package turniplabs.industry.block
 import net.minecraft.src.Block
 import net.minecraft.src.BlockLog
 import net.minecraft.src.Material
-import sunsetsatellite.energyapi.template.blocks.BlockWire
 import turniplabs.halplibe.helper.BlockHelper
 import turniplabs.industry.Industry2
 import turniplabs.industry.block.machine.BlockIndustryGenerator
+import turniplabs.industry.block.machine.BlockMacerator
 import turniplabs.industry.block.machine.BlockRelay
 import turniplabs.industry.block.machine.BlockSolarGenerator
 
@@ -78,7 +78,7 @@ object IndustryBlocks {
 
     val COPPER_CABLE: Block = BlockHelper.createBlock(
         Industry2.MODID,
-        BlockWire(nextBlockID(), Material.iron),
+        BlockCable(nextBlockID(), Material.iron, 32, 0, 32, 0),
         "cable.copper",
         "block_copper_sides.png",
         Block.soundMetalFootstep,
@@ -147,7 +147,7 @@ object IndustryBlocks {
 
     val TIN_CABLE: Block = BlockHelper.createBlock(
         Industry2.MODID,
-        BlockWire(nextBlockID(), Material.iron),
+        BlockCable(nextBlockID(), Material.iron, 256, 0, 256, 2),
         "cable.tin",
         "block_tin_sides.png",
         Block.soundMetalFootstep,
@@ -272,6 +272,22 @@ object IndustryBlocks {
         Industry2.MODID,
         BlockRelay(nextBlockID(), Material.iron, 256, 0, 256),
         "machine.relay",
+        "machine_casing_basic.png",
+        Block.soundMetalFootstep,
+        3.0f,
+        3.0f,
+        0.0f
+    )
+
+    val MACHINE_MACERATOR: Block = BlockHelper.createBlock(
+        Industry2.MODID,
+        BlockMacerator(nextBlockID(), Material.iron),
+        "machine.macerator",
+        "machine_casing_basic.png",
+        "machine_casing_basic.png",
+        "machine_macerator.png",
+        "machine_casing_basic.png",
+        "machine_casing_basic.png",
         "machine_casing_basic.png",
         Block.soundMetalFootstep,
         3.0f,
