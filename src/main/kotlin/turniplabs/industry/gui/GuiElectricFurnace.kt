@@ -4,10 +4,11 @@ import net.minecraft.src.GuiContainer
 import net.minecraft.src.InventoryPlayer
 import org.lwjgl.opengl.GL11
 import sunsetsatellite.energyapi.util.Config
+import turniplabs.industry.block.tile.TileEntityElectricFurnace
 import turniplabs.industry.block.tile.TileEntityMacerator
 
-class GuiMacerator(container: InventoryPlayer?, private val tile: TileEntityMacerator) : GuiContainer(
-    ContainerMacerator(container!!, tile)
+class GuiElectricFurnace(container: InventoryPlayer?, private val tile: TileEntityElectricFurnace) : GuiContainer(
+    ContainerElectricFurnace(container!!, tile)
 ) {
 
     override fun drawGuiContainerBackgroundLayer(f: Float) {
@@ -29,7 +30,7 @@ class GuiMacerator(container: InventoryPlayer?, private val tile: TileEntityMace
 
     override fun drawGuiContainerForegroundLayer() {
         super.drawGuiContainerForegroundLayer()
-        fontRenderer.drawString("Macerator", 64, 6, 0xFF404040.toInt())
+        fontRenderer.drawString("Electric Furnace", 46, 6, 0xFF404040.toInt())
         fontRenderer.drawString("Inventory", 8, (ySize - 96) + 2, 0xFF404040.toInt())
     }
 

@@ -4,18 +4,19 @@ import net.minecraft.src.*
 import sunsetsatellite.energyapi.EnergyAPI
 import turniplabs.halplibe.helper.TextureHelper
 import turniplabs.industry.Industry2
-import turniplabs.industry.block.tile.TileEntityMacerator
-import turniplabs.industry.gui.ContainerMacerator
-import turniplabs.industry.gui.GuiMacerator
+import turniplabs.industry.block.tile.TileEntityElectricFurnace
+import turniplabs.industry.gui.ContainerElectricFurnace
+import turniplabs.industry.gui.GuiElectricFurnace
 
 
-class BlockMacerator(i: Int, material: Material?) : BlockContainerRotatable(i, material) {
+class BlockElectricFurnace(i: Int, material: Material?) : BlockContainerRotatable(i, material) {
     private var active: Boolean = false
     private var keepInventory: Boolean = false
 
-    private val maceratorTexture: Array<IntArray> = arrayOf(
-            TextureHelper.registerBlockTexture(Industry2.MODID, "machine_macerator.png"),
-            TextureHelper.registerBlockTexture(Industry2.MODID, "machine_macerator_on.png"),
+
+    private val electricFurnaceTexture: Array<IntArray> = arrayOf(
+            TextureHelper.registerBlockTexture(Industry2.MODID, "machine_electric_furnace.png"),
+            TextureHelper.registerBlockTexture(Industry2.MODID, "machine_electric_furnace_on.png"),
             TextureHelper.registerBlockTexture(Industry2.MODID, "machine_casing_basic.png")
     )
 
@@ -24,7 +25,7 @@ class BlockMacerator(i: Int, material: Material?) : BlockContainerRotatable(i, m
     }
 
     override fun getBlockEntity(): TileEntity {
-        return TileEntityMacerator()
+        return TileEntityElectricFurnace()
     }
 
     override fun onBlockRemoval(world: World?, x: Int, y: Int, z: Int) {
@@ -64,13 +65,13 @@ class BlockMacerator(i: Int, material: Material?) : BlockContainerRotatable(i, m
 
     override fun blockActivated(world: World?, x: Int, y: Int, z: Int, entityPlayer: EntityPlayer?): Boolean {
         if (!world?.isMultiplayerAndNotHost!!) {
-            val tile: TileEntityMacerator = world.getBlockTileEntity(x, y, z) as TileEntityMacerator
+            val tile: TileEntityElectricFurnace = world.getBlockTileEntity(x, y, z) as TileEntityElectricFurnace
 
             if (tile != null)
                 EnergyAPI.displayGui(
                     entityPlayer,
-                    GuiMacerator(entityPlayer?.inventory, tile),
-                    ContainerMacerator(entityPlayer?.inventory!!, tile),
+                    GuiElectricFurnace(entityPlayer?.inventory, tile),
+                    ContainerElectricFurnace(entityPlayer?.inventory!!, tile),
                     entityPlayer.inventory
                 )
         }
@@ -78,7 +79,7 @@ class BlockMacerator(i: Int, material: Material?) : BlockContainerRotatable(i, m
     }
 
     override fun getBlockTexture(iblockaccess: IBlockAccess?, x: Int, y: Int, z: Int, side: Int): Int {
-        val tileEntity: TileEntityMacerator = iblockaccess?.getBlockTileEntity(x, y, z) as TileEntityMacerator
+        val tileEntity: TileEntityElectricFurnace = iblockaccess?.getBlockTileEntity(x, y, z) as TileEntityElectricFurnace
         val metadata: Int = iblockaccess.getBlockMetadata(x, y, z)
 
         /*
@@ -94,17 +95,17 @@ class BlockMacerator(i: Int, material: Material?) : BlockContainerRotatable(i, m
         if (index == 4) {
             if (tileEntity.active)
                 return texCoordToIndex(
-                    maceratorTexture[1][0],
-                    maceratorTexture[1][1]
+                        electricFurnaceTexture[1][0],
+                        electricFurnaceTexture[1][1]
                 ).also { atlasIndices[index] = it }
-             else return texCoordToIndex(
-                maceratorTexture[0][0],
-                maceratorTexture[0][1]
-             ).also { atlasIndices[index] = it }
+            else return texCoordToIndex(
+                    electricFurnaceTexture[0][0],
+                    electricFurnaceTexture[0][1]
+            ).also { atlasIndices[index] = it }
         } else if (index in 0..5 && index != 4)
             return texCoordToIndex(
-                    maceratorTexture[2][0],
-                    maceratorTexture[2][1]
+                    electricFurnaceTexture[2][0],
+                    electricFurnaceTexture[2][1]
             ).also { atlasIndices[index] = it }
         return atlasIndices[index]
     }
@@ -112,10 +113,10 @@ class BlockMacerator(i: Int, material: Material?) : BlockContainerRotatable(i, m
     // This is required since Kotlin doesn't support static methods
     // It also doesn't support calling main functions in Companion Objects, so it requires even more craziness
     companion object {
-        private var instance: BlockMacerator? = null
+        private var instance: BlockElectricFurnace? = null
 
-        fun setupInstance(macerator: BlockMacerator) {
-            instance = macerator
+        fun setupInstance(furnace: BlockElectricFurnace) {
+            instance = furnace
         }
 
         fun updateBlockState(active: Boolean, world: World?, x: Int, y: Int, z: Int) {
@@ -135,8 +136,8 @@ class BlockMacerator(i: Int, material: Material?) : BlockContainerRotatable(i, m
             }
         }
 
-        private fun getInstance(): BlockMacerator {
-            return instance ?: throw NullPointerException("Instance of BlockMacerator hasn't been set!")
+        private fun getInstance(): BlockElectricFurnace {
+            return instance ?: throw NullPointerException("Instance of BlockElectricFurnace hasn't been set!")
         }
     }
 }

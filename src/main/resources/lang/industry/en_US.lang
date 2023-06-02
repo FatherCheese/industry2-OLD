@@ -50,6 +50,9 @@ tile.industry.machine.relay.desc=A toggleable gate for electricity to pass throu
 
 tile.industry.machine.macerator.name=Macerator
 tile.industry.machine.macerator.desc=A tier one machine to grind up ores into twice the amount of dust.
+tile.industry.machine.furnace.name=Electric Furnace
+tile.industry.machine.furnace.desc=A tier one machine to smelt materials.
+
 
 item.industry.raw.copper.name=Raw Copper Ore
 item.industry.raw.copper.desc=A chunk of unprocessed copper. Can be smelted into a copper ingot.

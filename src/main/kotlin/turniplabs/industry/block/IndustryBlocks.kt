@@ -5,10 +5,7 @@ import net.minecraft.src.BlockLog
 import net.minecraft.src.Material
 import turniplabs.halplibe.helper.BlockHelper
 import turniplabs.industry.Industry2
-import turniplabs.industry.block.machine.BlockIndustryGenerator
-import turniplabs.industry.block.machine.BlockMacerator
-import turniplabs.industry.block.machine.BlockRelay
-import turniplabs.industry.block.machine.BlockSolarGenerator
+import turniplabs.industry.block.machine.*
 
 object IndustryBlocks {
 
@@ -283,15 +280,31 @@ object IndustryBlocks {
         Industry2.MODID,
         BlockMacerator(nextBlockID(), Material.iron),
         "machine.macerator",
-        "machine_casing_basic.png",
-        "machine_casing_basic.png",
-        "machine_macerator.png",
-        "machine_casing_basic.png",
-        "machine_casing_basic.png",
-        "machine_casing_basic.png",
+            "machine_casing_basic.png",
+            "machine_casing_basic.png",
+            "machine_macerator.png",
+            "machine_casing_basic.png",
+            "machine_casing_basic.png",
+            "machine_casing_basic.png",
         Block.soundMetalFootstep,
         3.0f,
         3.0f,
         0.0f
+    )
+
+    val MACHINE_ELECTRIC_FURNACE: Block = BlockHelper.createBlock(
+            Industry2.MODID,
+            BlockElectricFurnace(nextBlockID(), Material.iron),
+            "machine.furnace",
+            "machine_casing_basic.png",
+            "machine_casing_basic.png",
+            "machine_electric_furnace.png",
+            "machine_casing_basic.png",
+            "machine_casing_basic.png",
+            "machine_casing_basic.png",
+            Block.soundMetalFootstep,
+            3.0f,
+            3.0f,
+            0.0f
     )
 }

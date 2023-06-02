@@ -6,15 +6,14 @@ import sunsetsatellite.energyapi.impl.TileEntityEnergyConductor
 import sunsetsatellite.energyapi.util.Connection
 import sunsetsatellite.energyapi.util.Direction
 import turniplabs.industry.block.IndustryBlocks
-import turniplabs.industry.block.machine.BlockMacerator
-import turniplabs.industry.recipes.RecipesMacerator
+import turniplabs.industry.block.machine.BlockElectricFurnace
 
-// NOTE - this entire class was auto-translated to Kotlin due to Array out of bounds errors when rewritten, go through this later!
-class TileEntityMacerator : TileEntityEnergyConductor(), IInventory {
+// Copy of TileEntityMacerator
+class TileEntityElectricFurnace : TileEntityEnergyConductor(), IInventory {
     var active = false
     private var contents: Array<ItemStack?>
-    private var currentCrushTime = 0
-    private var maxCrushTime = 256
+    private var currentSmeltTime = 0
+    private var maxSmeltTime = 128
 
     init {
         setCapacity(4096)
@@ -24,7 +23,6 @@ class TileEntityMacerator : TileEntityEnergyConductor(), IInventory {
         for (dir: Direction in Direction.values()) setConnection(dir, Connection.INPUT)
     }
 
-    // TODO - variable "active" is only updating when the block next to is updated
     override fun updateEntity() {
         super.updateEntity()
         val hasEnergy: Boolean = energy > 0
@@ -37,31 +35,33 @@ class TileEntityMacerator : TileEntityEnergyConductor(), IInventory {
         }
 
         if (!worldObj!!.isMultiplayerAndNotHost) {
-            if (worldObj!!.getBlockId(xCoord, yCoord, zCoord) == IndustryBlocks.MACHINE_MACERATOR.blockID &&
-                currentCrushTime == 0 &&
+            if (worldObj!!.getBlockId(xCoord, yCoord, zCoord) == IndustryBlocks.MACHINE_ELECTRIC_FURNACE.blockID &&
+                currentSmeltTime == 0 &&
                 contents[0] == null
                 ) {
-                BlockMacerator.updateBlockState(true, worldObj, xCoord, yCoord, zCoord)
+                BlockElectricFurnace.updateBlockState(true, worldObj, xCoord, yCoord, zCoord)
                 machineUpdated = true
 
             }
 
             if (hasEnergy && canCrush()) {
-                ++currentCrushTime
+                ++currentSmeltTime
                 --energy
                 active = true
-                if (currentCrushTime == maxCrushTime) {
-                    currentCrushTime = 0
+                if (currentSmeltTime == maxSmeltTime) {
+                    currentSmeltTime = 0
                     crushItem()
                     active = false
                     machineUpdated = true
                 }
             } else {
-                currentCrushTime = 0
+                currentSmeltTime = 0
                 active = false
             }
         }
         if (machineUpdated) this.onInventoryChanged()
+
+        if (active) worldObj.markBlocksDirty(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord)
     }
 
     override fun getSizeInventory(): Int {
@@ -100,7 +100,7 @@ class TileEntityMacerator : TileEntityEnergyConductor(), IInventory {
     }
 
     override fun getInvName(): String {
-        return "Macerator"
+        return "ElectricFurnace"
     }
 
     override fun readFromNBT(nbttagcompound: NBTTagCompound) {
@@ -145,13 +145,13 @@ class TileEntityMacerator : TileEntityEnergyConductor(), IInventory {
     }
 
     fun getCrushProgressScaled(i: Int): Int {
-        return if (maxCrushTime == 0) 0 else currentCrushTime * i / maxCrushTime
+        return if (maxSmeltTime == 0) 0 else currentSmeltTime * i / maxSmeltTime
     }
 
     private fun canCrush(): Boolean {
         if (contents[0] == null) return false
 
-        val itemStack: ItemStack = RecipesMacerator.crushing().getResult(contents[0]!!.item.itemID)
+        val itemStack: ItemStack = RecipesFurnace.smelting().getSmeltingResult(contents[0]!!.item.itemID)
         if (itemStack == null) return false
 
         if (contents[2] == null) return true
@@ -166,7 +166,7 @@ class TileEntityMacerator : TileEntityEnergyConductor(), IInventory {
 
     private fun crushItem() {
         if (canCrush()) {
-            val itemStack: ItemStack = RecipesMacerator.crushing().getResult(contents[0]!!.item.itemID)
+            val itemStack: ItemStack = RecipesFurnace.smelting().getSmeltingResult(contents[0]!!.item.itemID)
             if (contents[2] == null) contents[2] = itemStack.copy()
             else if (contents[2]!!.itemID == itemStack.itemID) ++contents[2]!!.stackSize
 
